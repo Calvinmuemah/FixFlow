@@ -9,12 +9,14 @@ const JoinRoom = ({ token }) => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT; 
+
   const handleCheckRoom = async (e) => {
     e.preventDefault();
     if (!roomCode.trim()) return alert('Please enter room code');
 
     try {
-      const res = await fetch(`http://localhost:5000/api/room/room/${roomCode}`, {
+      const res = await fetch(`${API_BASE_URL}/room/room/${roomCode}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -40,7 +42,7 @@ const JoinRoom = ({ token }) => {
 
   const joinRoomRequest = async (passwordInput) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/room/join/${roomCode}`, {
+      const res = await fetch(`${API_BASE_URL}/room/join/${roomCode}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

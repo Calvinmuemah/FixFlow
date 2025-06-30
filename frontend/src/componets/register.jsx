@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 const Register = ({ onRegister }) => {
   const [form, setForm] = useState({ name: '', email: '', password: '', role: 'viewer' });
   const navigate = useNavigate(); // 🚀 for navigation
+  const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT; 
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/auth/register', {
+      const res = await fetch(`${API_BASE_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

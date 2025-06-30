@@ -8,6 +8,7 @@ const CreateRoom = ({ token }) => {
     password: ''
   });
   const navigate = useNavigate();
+  const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT; 
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -20,7 +21,7 @@ const CreateRoom = ({ token }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/room/create', {
+      const res = await fetch(`${API_BASE_URL}/room/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 const Login = ({ onLogin }) => {
   const [form, setForm] = useState({ email: '', password: '' });
   const navigate = useNavigate(); // 🚀 navigation hook
+  const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT; 
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

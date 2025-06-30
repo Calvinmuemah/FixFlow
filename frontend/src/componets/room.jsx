@@ -19,6 +19,8 @@ const RoomPage = ({ token, user }) => {
   const myVideo = useRef();
   const userVideos = useRef({});
   const messagesEndRef = useRef();
+//   const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT; 
+
 
   useEffect(() => {
     if (!token || !user) return;
